@@ -1,0 +1,10 @@
+General:
+docker build -t fmb/api .
+docker run -p 8080:8083 fmb/api
+http://localhost:8080/fmbApi/test
+
+With Networking:
+docker build -t fmb/api .
+docker network create network.fmb
+docker run --network network.fmb --name container.fmb.api -p 8080:8083 -d fmb/api
+http://localhost:8080/fmbApi/test

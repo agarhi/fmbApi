@@ -1,0 +1,6 @@
+docker build -t fmb/db .
+docker stop container.fmb.db
+docker rm container.fmb.db
+docker run --network network.fmb -e "MYSQL_ROOT_PASSWORD=kaha53K@H@" --name=container.fmb.db -d fmb/db
+docker exec -it container.fmb.db bash;
+mysql -uroot -p
