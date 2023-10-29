@@ -11,7 +11,7 @@ import com.fmb.api.service.MenuService;
 import com.fmb.api.service.TestDBService;
 
 @Controller
-@RequestMapping("/test")
+@RequestMapping("/")
 public class FmbController {
 	
 	@Autowired
@@ -20,7 +20,7 @@ public class FmbController {
 	@Autowired
 	private MenuService menuService;
 		
-	@GetMapping
+	@GetMapping("/test")
 	public ResponseEntity<String> hello() {
 		return ResponseEntity.ok("Test pass'd at "+dbService.getDate());
 	}
