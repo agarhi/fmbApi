@@ -14,9 +14,9 @@ echo "-------> Stopped container.fmb.db!"
 docker rm container.fmb.db
 echo "-------> Removed container.fmb.db!"
 
-docker run --network network.fmb -e "MYSQL_ROOT_PASSWORD=kaha53K@H@" --name=container.fmb.db -d fmb/db
+container_id=$(docker run --network network.fmb -e "MYSQL_ROOT_PASSWORD=kaha53K@H@" --name=container.fmb.db -d fmb/db)
 echo "-------> Running container.fmb.db!"
 
-docker exec -it container.fmb.db bash;
+docker logs --follow $container_id
 
-cd ../../../../
+# docker exec -it container.fmb.db bash;

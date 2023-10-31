@@ -15,10 +15,7 @@ echo "-------> Stopped container.fmb.api!"
 docker rm container.fmb.api
 echo "-------> Removed container.fmb.api!"
 
-docker run --network network.fmb --name container.fmb.api -p 8080:8083 -d fmb/api
+container_id=$(docker run --network network.fmb --name container.fmb.api -p 8080:8083 -d fmb/api)
 echo "-------> Running container.fmb.api!"
 
-sleep 20
-echo "-------> Slept 20"
-
-curl http://localhost:8080/fmbApi/test/
+docker logs --follow ${container_id}

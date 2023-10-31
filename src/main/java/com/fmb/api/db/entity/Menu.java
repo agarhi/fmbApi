@@ -39,7 +39,4 @@ public class Menu {
 	public void setMenucol(String menucol) {
 		this.menucol = menucol;
 	}
-	
-	
-
 }
