@@ -26,19 +26,19 @@ public class User {
 	private String lname;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "credentials")
+	@JoinColumn(name = "credentials_id")
 	private Credentials credentials;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "area")
+	@JoinColumn(name = "address_id")
 	private Address address;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "raza_status")
+	@JoinColumn(name = "raza_status_id")
 	private RazaStatus razaStatus;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "preference")
+	@JoinColumn(name = "preference_id")
 	private Preference preference;
 	
 	private String its;

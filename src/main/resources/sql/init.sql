@@ -74,23 +74,24 @@ CREATE TABLE `user` (
   `fname` varchar(45) NOT NULL,
   `lname` varchar(45) NOT NULL,
   `thalinum` int DEFAULT NULL,
-  `area` int NOT NULL,
-  `preference` int DEFAULT NULL,
-  `credentials` int NOT NULL,
+  `address_id` int NOT NULL,
+  `preference_id` int DEFAULT NULL,
+  `credentials_id` int NOT NULL,
   `its` varchar(10) NOT NULL,
-  `raza_status` int DEFAULT NULL,
+  `raza_status_id` int DEFAULT NULL,
   `created_date` datetime NOT NULL,
-  PRIMARY KEY (`area`),
+  PRIMARY KEY (`address_id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `thalinum_UNIQUE` (`thalinum`),
-  KEY `preference_fk_idx` (`preference`),
-  KEY `credentials_fk_idx` (`credentials`),
-  KEY `raza_status_fk_idx` (`raza_status`),
-  CONSTRAINT `area_code_fk` FOREIGN KEY (`area`) REFERENCES `user_contact` (`id`),
-  CONSTRAINT `credentials_fk` FOREIGN KEY (`credentials`) REFERENCES `user_credentials` (`id`),
-  CONSTRAINT `preference_fk` FOREIGN KEY (`preference`) REFERENCES `user_preference` (`id`),
-  CONSTRAINT `raza_status_fk` FOREIGN KEY (`raza_status`) REFERENCES `user_raza_status` (`id`)
+  KEY `preference_fk_idx` (`preference_id`),
+  KEY `credentials_fk_idx` (`credentials_id`),
+  KEY `raza_status_fk_idx` (`raza_status_id`),
+  CONSTRAINT `area_code_fk` FOREIGN KEY (`address_id`) REFERENCES `user_contact` (`id`),
+  CONSTRAINT `credentials_fk` FOREIGN KEY (`credentials_id`) REFERENCES `user_credentials` (`id`),
+  CONSTRAINT `preference_fk` FOREIGN KEY (`preference_id`) REFERENCES `user_preference` (`id`),
+  CONSTRAINT `raza_status_fk` FOREIGN KEY (`raza_status_id`) REFERENCES `user_raza_status` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 INSERT INTO `fmb_main`.`menu`
 (`date`,
