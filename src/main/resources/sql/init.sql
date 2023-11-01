@@ -64,7 +64,6 @@ CREATE TABLE `user_credentials` (
   `role` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `userid_UNIQUE` (`userid`),
-  UNIQUE KEY `password_UNIQUE` (`password`),
   KEY `role_fk_idx` (`role`),
   CONSTRAINT `user_cred_role_fk` FOREIGN KEY (`role`) REFERENCES `user_role` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
