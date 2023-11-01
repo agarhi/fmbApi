@@ -105,6 +105,9 @@ public class User {
 		user.setIts(signUpRequest.getIts());
 		user.setCreatedDate(new Timestamp(new Date().getTime()));
 		
+		RazaStatus razaStatus = RazaStatus.from(signUpRequest);
+		user.setRazaStatus(razaStatus);
+		
 		Address addr = Address.from(signUpRequest);
 		user.setAddress(addr);
 		

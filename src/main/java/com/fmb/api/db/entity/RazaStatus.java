@@ -1,6 +1,7 @@
 package com.fmb.api.db.entity;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.fmb.api.model.request.SignUpRequest;
 
 @Entity
 @Table(name="user_raza_status")
@@ -75,6 +78,12 @@ public class RazaStatus {
 	}
 	public void setRejectReason(String rejectReason) {
 		this.rejectReason = rejectReason;
+	}
+	
+	public static RazaStatus from(SignUpRequest signUpRequest) {
+		RazaStatus razaStatus = new RazaStatus();
+		razaStatus.setRequestDate(new Timestamp(new Date().getTime()));
+		return razaStatus;
 	}
 	
 	
