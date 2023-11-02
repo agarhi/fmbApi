@@ -16,7 +16,8 @@ public class RazaStatusServiceImpl implements RazaStatusService {
 	@Override
 	public RazaStatus getRazaStatus(String its) throws FmbException {
 		try {
-			return razaStatusRepository.getRazaStatus(its);
+			RazaStatus response = razaStatusRepository.getRazaStatus(its);
+			return response == null ? new RazaStatus() : response;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new FmbException("System Error");
