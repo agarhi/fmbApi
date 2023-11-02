@@ -85,6 +85,12 @@ public class RazaStatus {
 		razaStatus.setRequestDate(new Timestamp(new Date().getTime()));
 		return razaStatus;
 	}
+	@Override
+	public String toString() {
+		return "RazaStatus [id=" + id + ", aamil=" + aamil + ", razaReceived=" + razaReceived + ", requestDate="
+				+ requestDate + ", approvedDate=" + approvedDate + ", rejectedDate=" + rejectedDate + ", rejectReason="
+				+ rejectReason + "]";
+	}
 	
 	
 
