@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.fmb.api.db.entity.User;
@@ -20,11 +21,15 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
 	@Override
 	public void register(SignUpRequest signUpRequest) throws FmbException {
 		try {
 			logger.info(signUpRequest.toString());
 			User user = User.from(signUpRequest);
+			user.getCredentials().setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
 			logger.info(user.toString());
 			userRepository.save(user);
 		} catch (DataIntegrityViolationException dive) {

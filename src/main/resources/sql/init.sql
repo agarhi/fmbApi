@@ -60,7 +60,7 @@ INSERT INTO `fmb_main`.`user_role`(`role`) VALUES ('AAMIL');
 CREATE TABLE `user_credentials` (
   `id` int NOT NULL AUTO_INCREMENT,
   `userid` varchar(20) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `password` varchar(200) NOT NULL,
   `role` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `userid_UNIQUE` (`userid`),

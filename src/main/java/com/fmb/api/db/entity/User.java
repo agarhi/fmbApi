@@ -16,6 +16,7 @@ import com.fmb.api.model.request.SignUpRequest;
 
 @Entity
 public class User {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
