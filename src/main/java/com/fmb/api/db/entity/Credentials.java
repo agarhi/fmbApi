@@ -3,11 +3,14 @@ package com.fmb.api.db.entity;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -26,7 +29,11 @@ public class Credentials {
 	@Column(name="userid")
 	private String username;
 	private String password;
-	private int role;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "role")
+	private Role role;
+	
 	private boolean accountNonExpired;
 	private boolean credentialsNonExpired;
 	private boolean accountNonLocked;
@@ -50,13 +57,12 @@ public class Credentials {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getRole() {
+	public Role getRole() {
 		return role;
 	}
-	public void setRole(int role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
-	
 	public boolean isAccountNonExpired() {
 		return true;
 	}
@@ -83,13 +89,13 @@ public class Credentials {
 	}
 	
 	public List<? extends GrantedAuthority> getAuthorities() {
-		return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+		return Arrays.asList(new SimpleGrantedAuthority("ROLE_".concat(role.getRole())));
 	}
 	
 	public static Credentials from(SignUpRequest signUpRequest) {
 		Credentials credentials = new Credentials();
 		credentials.setUsername(signUpRequest.getUserid());
-		credentials.setRole(1);
+		credentials.setRole(Role.from("USER"));
 		return credentials;
 	}
 	
