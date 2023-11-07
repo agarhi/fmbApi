@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity http) throws Exception {
 		http
         .ignoring()
-            .antMatchers("/user");
+            .antMatchers("/user","/raza/status/{its}");
 	}
 
 	@Bean

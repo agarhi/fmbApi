@@ -14,6 +14,7 @@ public class SignUpRequest {
 	private String email;
 	private String userid;
 	private String password;
+	private String role;
 	
 	public String getFname() {
 		return fname;
@@ -92,6 +93,13 @@ public class SignUpRequest {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
 	}
 	@Override
 	public String toString() {

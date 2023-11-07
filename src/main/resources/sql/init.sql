@@ -44,28 +44,14 @@ CREATE TABLE `user_preference` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-
-CREATE TABLE `user_role` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `role` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `role_UNIQUE` (`role`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-INSERT INTO `fmb_main`.`user_role`(`role`) VALUES ('USER');
-INSERT INTO `fmb_main`.`user_role`(`role`) VALUES ('ADMIN');
-INSERT INTO `fmb_main`.`user_role`(`role`) VALUES ('AAMIL');
-
-
 CREATE TABLE `user_credentials` (
   `id` int NOT NULL AUTO_INCREMENT,
   `userid` varchar(20) NOT NULL,
-  `password` varchar(200) NOT NULL,
-  `role` int NOT NULL,
+  `password` varchar(250) NOT NULL,
+  `role` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `userid_UNIQUE` (`userid`),
-  KEY `role_fk_idx` (`role`),
-  CONSTRAINT `user_cred_role_fk` FOREIGN KEY (`role`) REFERENCES `user_role` (`id`)
+  KEY `role_fk_idx` (`role`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `user` (
