@@ -88,3 +88,44 @@ VALUES
 'test');
 
 alter table user_raza_status add   CONSTRAINT `aamil_fk` FOREIGN KEY (`aamil`) REFERENCES `user` (`id`);
+
+CREATE TABLE sequence (
+name              VARCHAR(50) NOT NULL,
+current_value INT NOT NULL,
+increment       INT NOT NULL DEFAULT 1,
+PRIMARY KEY (name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO sequence VALUES ('ThaliNum',0,1);
+
+DROP FUNCTION IF EXISTS currval;
+DELIMITER $
+CREATE FUNCTION currval (seq_name VARCHAR(50))
+RETURNS INTEGER
+READS SQL DATA
+DETERMINISTIC
+CONTAINS SQL
+BEGIN
+  DECLARE value INTEGER;
+  SET value = 0;
+  SELECT current_value INTO value
+  FROM sequence
+  WHERE name = seq_name;
+  RETURN value;
+END$
+DELIMITER ;
+
+DROP FUNCTION IF EXISTS nextval;
+DELIMITER $
+CREATE FUNCTION nextval (seq_name VARCHAR(50))
+RETURNS INTEGER
+READS SQL DATA
+DETERMINISTIC
+CONTAINS SQL
+BEGIN
+   UPDATE sequence
+   SET          current_value = current_value + increment
+   WHERE name = seq_name;
+   RETURN currval(seq_name);
+END$
+DELIMITER ;

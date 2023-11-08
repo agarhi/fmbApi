@@ -17,8 +17,11 @@ public class TestDBServiceImpl implements TestDBService {
 	public String getDate() {
 		String jpql = "SELECT SYSDATE()";
         Query query = entityManager.createNativeQuery(jpql);
+        
+        String jpql1 = "SELECT nextval('ThaliNum')";
+        Query query1 = entityManager.createNativeQuery(jpql1);
          
-        return query.getSingleResult().toString();
+        return query.getSingleResult().toString()+"_"+query1.getSingleResult().toString();
 	}
 
 }

@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fmb.api.db.entity.Menu;
 import com.fmb.api.db.entity.RazaStatus;
+import com.fmb.api.db.entity.User;
 import com.fmb.api.error.handling.FmbException;
 import com.fmb.api.model.request.RazaRejectRequest;
 import com.fmb.api.model.request.SignUpRequest;
 import com.fmb.api.model.request.SignUpResponse;
+import com.fmb.api.model.request.UserRequest;
 import com.fmb.api.service.MenuService;
 import com.fmb.api.service.RazaStatusService;
 import com.fmb.api.service.TestDBService;
@@ -57,10 +59,16 @@ public class FmbController {
 		return ResponseEntity.ok(menuService.getAll());
 	}
 	
-	@PostMapping("/user")
+	@PostMapping("/register")
 	public ResponseEntity<SignUpResponse> signUp(@RequestBody SignUpRequest signUpRequest) throws FmbException {
 		userService.register(signUpRequest);
 		return ResponseEntity.ok(SignUpResponse.success());
+	}
+	
+	@GetMapping("/user")
+	public ResponseEntity<User> getUser(@RequestBody UserRequest userRequest) throws FmbException {
+		User user = userService.getByUsername(userRequest.getUsername());
+		return ResponseEntity.ok(user);
 	}
 	
 	@GetMapping("/raza/status/{its}")

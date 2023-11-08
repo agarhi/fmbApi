@@ -43,6 +43,9 @@ public class User {
 	private Preference preference;
 	
 	private String its;
+	
+	private int thalinum;
+	
 	public int getId() {
 		return id;
 	}
@@ -98,6 +101,12 @@ public class User {
 	public void setPreference(Preference preference) {
 		this.preference = preference;
 	}
+	public int getThalinum() {
+		return thalinum;
+	}
+	public void setThalinum(int thalinum) {
+		this.thalinum = thalinum;
+	}
 	
 	public static User from(SignUpRequest signUpRequest) {
 		User user = new User();
@@ -120,8 +129,10 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", createdDate=" + createdDate + ", fname=" + fname + ", lname=" + lname
 				+ ", credentials=" + credentials + ", address=" + address + ", razaStatus=" + razaStatus
-				+ ", preference=" + preference + ", its=" + its + "]";
+				+ ", preference=" + preference + ", its=" + its + ", thalinum=" + thalinum + "]";
 	}
+	
+	
 	
 	
 	
