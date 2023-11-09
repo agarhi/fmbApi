@@ -1,6 +1,6 @@
 package com.fmb.api.db.entity;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,19 +12,21 @@ public class Menu {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	private Timestamp date;
+	private Date date;
 	private String item;
-	private String menucol;
+	private boolean niyaz;
+	private boolean readonly;
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Timestamp getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(Timestamp date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	public String getItem() {
@@ -33,10 +35,23 @@ public class Menu {
 	public void setItem(String item) {
 		this.item = item;
 	}
-	public String getMenucol() {
-		return menucol;
+	public boolean isNiyaz() {
+		return niyaz;
 	}
-	public void setMenucol(String menucol) {
-		this.menucol = menucol;
+	public void setNiyaz(boolean niyaz) {
+		this.niyaz = niyaz;
 	}
+	public boolean isReadonly() {
+		return readonly;
+	}
+	public void setReadonly(boolean readonly) {
+		this.readonly = readonly;
+	}
+	
+	@Override
+	public String toString() {
+		return "Menu [id=" + id + ", date=" + date + ", item=" + item + ", niyaz=" + niyaz + ", readonly=" + readonly
+				+ "]";
+	}
+	
 }

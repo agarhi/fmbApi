@@ -4,11 +4,42 @@ Use fmb_main;
 
 CREATE TABLE `menu` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `date` datetime NOT NULL,
+  `date` date NOT NULL,
   `item` varchar(100) NOT NULL,
-  `menucol` varchar(45) NOT NULL,
+  `niyaz` tinyint NOT NULL DEFAULT '0',
+  `readonly` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-10-30','Dal Chawal Palidu, Mithaas');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-10-31','Masoor Pulao, Kadhi');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-01','Aloo Gosht Tarkari');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-02','Chicken Karahi');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-03','Veg Pulao, Soup');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`,`niyaz`) VALUES ('2023-11-04','Private Darees',1);
+
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-06','Masoor Daal, Chawal');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-07','DKheer, Daal Gosht, Chawal');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-08','Keema Pulao, Soup');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-09','Milad Dai Iz Zaman');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-10','Mithaas, Chicken Korma');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`,`niyaz`) VALUES ('2023-11-11','Private Thaali',1);
+
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-12','Khichdo, Afghani Naan');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-13','Mix Sabzi');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-14','Homestyle Chicken Tarkari');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-15','Achari Gosht Pulao, Cucumber Raita');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-16','Chicken Enchiladas');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-17','Tikka Boti, Paratha');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`,`niyaz`) VALUES ('2023-11-18','16mi Darees',1);
+
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-18','Masoor Daal, Chawal, Bhindi');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`,`niyaz`) VALUES ('2023-11-19','Milad Imam Uz Zaman', 1);
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-20','Mithaas, Malvi Gosht');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-21','Pav Bhaaji');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-22','Daal Gosht, Chawal');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-23','Butter Chicken');
+
 
 CREATE TABLE `user_raza_status` (
   `id` int NOT NULL AUTO_INCREMENT,

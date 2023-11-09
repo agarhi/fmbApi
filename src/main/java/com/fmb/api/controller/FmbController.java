@@ -1,5 +1,7 @@
 package com.fmb.api.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -16,6 +18,7 @@ import com.fmb.api.db.entity.Menu;
 import com.fmb.api.db.entity.RazaStatus;
 import com.fmb.api.db.entity.User;
 import com.fmb.api.error.handling.FmbException;
+import com.fmb.api.model.request.MenuRequest;
 import com.fmb.api.model.request.RazaRejectRequest;
 import com.fmb.api.model.request.SignUpRequest;
 import com.fmb.api.model.request.SignUpResponse;
@@ -54,9 +57,9 @@ public class FmbController {
 		return ResponseEntity.ok("Hello Admin "+dbService.getDate());
 	}
 	
-	@GetMapping("/menus")
-	public ResponseEntity<Iterable<Menu>> getAllMenu() {
-		return ResponseEntity.ok(menuService.getAll());
+	@GetMapping("/menu")
+	public ResponseEntity<List<Menu>> getByWeek(@RequestBody MenuRequest menuRequest) {
+		return ResponseEntity.ok(menuService.getByWeek(menuRequest.getOffset()));
 	}
 	
 	@PostMapping("/register")
