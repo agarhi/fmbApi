@@ -18,11 +18,9 @@ import com.fmb.api.db.entity.Menu;
 import com.fmb.api.db.entity.RazaStatus;
 import com.fmb.api.db.entity.User;
 import com.fmb.api.error.handling.FmbException;
-import com.fmb.api.model.RsvpRequest;
 import com.fmb.api.model.request.MenuRequest;
 import com.fmb.api.model.request.RazaRejectRequest;
 import com.fmb.api.model.request.SignUpRequest;
-import com.fmb.api.model.request.UserRequest;
 import com.fmb.api.model.response.RsvpResponse;
 import com.fmb.api.model.response.SignUpResponse;
 import com.fmb.api.service.MenuService;
@@ -70,9 +68,9 @@ public class FmbController {
 		return ResponseEntity.ok(menuService.getByWeek(menuRequest.getOffset()));
 	}
 	
-	@GetMapping("/rsvp")
-	public ResponseEntity<List<RsvpResponse>> getRsvp(@RequestBody RsvpRequest rsvpRequest) throws FmbException {
-		return ResponseEntity.ok(rsvpService.getByUserIdAndMenuOffset(rsvpRequest.getUserId(), rsvpRequest.getMenuOffset()));
+	@GetMapping("/rsvp/{userId}/{menuOffset}")
+	public ResponseEntity<List<RsvpResponse>> getRsvp(@PathVariable Integer userId, @PathVariable Integer menuOffset) throws FmbException {
+		return ResponseEntity.ok(rsvpService.getByUserIdAndMenuOffset(userId, menuOffset));
 	}
 	
 	@PostMapping("/register")
@@ -81,9 +79,9 @@ public class FmbController {
 		return ResponseEntity.ok(SignUpResponse.success());
 	}
 	
-	@GetMapping("/user")
-	public ResponseEntity<User> getUser(@RequestBody UserRequest userRequest) throws FmbException {
-		User user = userService.getByUsername(userRequest.getUsername());
+	@GetMapping("/user/{username}")
+	public ResponseEntity<User> getUser(@PathVariable String username) throws FmbException {
+		User user = userService.getByUsername(username);
 		return ResponseEntity.ok(user);
 	}
 	
