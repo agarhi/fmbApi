@@ -1,4 +1,4 @@
-package com.fmb.api.model.request;
+package com.fmb.api.model.response;
 
 public class SignUpResponse {
 	

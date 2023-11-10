@@ -8,8 +8,9 @@ CREATE TABLE `menu` (
   `item` varchar(100) NOT NULL,
   `niyaz` tinyint NOT NULL DEFAULT '0',
   `readonly` tinyint NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `date_UNIQUE` (`date`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-10-30','Dal Chawal Palidu, Mithaas');
 INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-10-31','Masoor Pulao, Kadhi');
@@ -31,7 +32,6 @@ INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-14','Homestyle Chi
 INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-15','Achari Gosht Pulao, Cucumber Raita');
 INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-16','Chicken Enchiladas');
 INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-17','Tikka Boti, Paratha');
-INSERT INTO `fmb_main`.`menu`(`date`,`item`,`niyaz`) VALUES ('2023-11-18','16mi Darees',1);
 
 INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-18','Masoor Daal, Chawal, Bhindi');
 INSERT INTO `fmb_main`.`menu`(`date`,`item`,`niyaz`) VALUES ('2023-11-19','Milad Imam Uz Zaman', 1);
@@ -39,6 +39,71 @@ INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-20','Mithaas, Malv
 INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-21','Pav Bhaaji');
 INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-22','Daal Gosht, Chawal');
 INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-23','Butter Chicken');
+
+CREATE TABLE `rsvp` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `menu_id` int NOT NULL,
+  `size` varchar(3) NOT NULL,
+  `less_carbs` tinyint DEFAULT NULL,
+  `adult_count` int DEFAULT NULL,
+  `kids_count` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `menu_day_fk_idx` (`menu_id`),
+  KEY `user_fk_idx` (`user_id`),
+  CONSTRAINT `menu_day_fk` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`id`),
+  CONSTRAINT `user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,27,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,28,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,29,'M',1,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,30,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,31,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,32,'M',0,3,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,33,'M',1,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,34,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,35,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,36,'M',1,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,37,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,38,'M',1,3,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,39,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,40,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,41,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,42,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,43,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,44,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,45,'M',0,3,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,46,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,47,'M',0,3,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,48,'M',1,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,49,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,50,'M',0,0,0);
+
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,27,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,28,'M',1,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,29,'L',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,30,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,31,'M',0,3,2);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,32,'M',1,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,33,'XL',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,34,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,35,'M',1,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,36,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,37,'M',0,3,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,38,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,39,'XXL',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,40,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,41,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,42,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,43,'M',1,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,44,'M',0,3,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,45,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,46,'M',0,3,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,47,'S',1,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,48,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,49,'XS',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,50,'M',1,0,0);
 
 
 CREATE TABLE `user_raza_status` (
@@ -109,14 +174,6 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
-INSERT INTO `fmb_main`.`menu`
-(`date`,
-`item`,
-`menucol`)
-VALUES
-(now(),
-'Khurdi Khichdi Gulab Jamun',
-'test');
 
 alter table user_raza_status add   CONSTRAINT `aamil_fk` FOREIGN KEY (`aamil`) REFERENCES `user` (`id`);
 

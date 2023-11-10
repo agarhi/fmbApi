@@ -18,13 +18,16 @@ import com.fmb.api.db.entity.Menu;
 import com.fmb.api.db.entity.RazaStatus;
 import com.fmb.api.db.entity.User;
 import com.fmb.api.error.handling.FmbException;
+import com.fmb.api.model.RsvpRequest;
 import com.fmb.api.model.request.MenuRequest;
 import com.fmb.api.model.request.RazaRejectRequest;
 import com.fmb.api.model.request.SignUpRequest;
-import com.fmb.api.model.request.SignUpResponse;
 import com.fmb.api.model.request.UserRequest;
+import com.fmb.api.model.response.RsvpResponse;
+import com.fmb.api.model.response.SignUpResponse;
 import com.fmb.api.service.MenuService;
 import com.fmb.api.service.RazaStatusService;
+import com.fmb.api.service.RsvpService;
 import com.fmb.api.service.TestDBService;
 import com.fmb.api.service.UserService;
 
@@ -44,6 +47,11 @@ public class FmbController {
 	
 	@Autowired
 	private RazaStatusService razaStatusService;
+	
+	@Autowired
+	private RsvpService rsvpService;
+	
+	
 		
 	@GetMapping("/test")
 	@Secured("ROLE_USER")
@@ -60,6 +68,11 @@ public class FmbController {
 	@GetMapping("/menu")
 	public ResponseEntity<List<Menu>> getByWeek(@RequestBody MenuRequest menuRequest) {
 		return ResponseEntity.ok(menuService.getByWeek(menuRequest.getOffset()));
+	}
+	
+	@GetMapping("/rsvp")
+	public ResponseEntity<List<RsvpResponse>> getRsvp(@RequestBody RsvpRequest rsvpRequest) throws FmbException {
+		return ResponseEntity.ok(rsvpService.getByUserIdAndMenuOffset(rsvpRequest.getUserId(), rsvpRequest.getMenuOffset()));
 	}
 	
 	@PostMapping("/register")

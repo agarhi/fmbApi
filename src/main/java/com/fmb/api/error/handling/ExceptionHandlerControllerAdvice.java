@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.fmb.api.model.request.SignUpResponse;
+import com.fmb.api.model.response.SignUpResponse;
 
 @ControllerAdvice
 public class ExceptionHandlerControllerAdvice {
