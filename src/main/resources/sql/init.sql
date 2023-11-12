@@ -40,6 +40,32 @@ INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-21','Pav Bhaaji');
 INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-22','Daal Gosht, Chawal');
 INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-23','Butter Chicken');
 
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-24','Aloo Gosht Tarkari');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-25','Chicken Karahi');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-26','Veg Pulao, Soup');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`,`niyaz`) VALUES ('2023-11-27','Private Darees',1);
+
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-28','Masoor Daal, Chawal');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-29','DKheer, Daal Gosht, Chawal');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-11-30','Keema Pulao, Soup');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-12-01','Milad Dai Iz Zaman');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-12-02','Mithaas, Chicken Korma');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`,`niyaz`) VALUES ('2023-12-03','Private Thaali',1);
+
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-12-04','Khichdo, Afghani Naan');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-12-05','Mix Sabzi');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-12-06','Homestyle Chicken Tarkari');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-12-07','Achari Gosht Pulao, Cucumber Raita');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-12-08','Chicken Enchiladas');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-12-09','Tikka Boti, Paratha');
+
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-12-10','Masoor Daal, Chawal, Bhindi');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`,`niyaz`) VALUES ('2023-12-11','Milad Imam Uz Zaman', 1);
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-12-12','Mithaas, Malvi Gosht');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-12-13','Pav Bhaaji');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-12-14','Daal Gosht, Chawal');
+INSERT INTO `fmb_main`.`menu`(`date`,`item`) VALUES ('2023-12-15','Butter Chicken');
+
 CREATE TABLE `rsvp` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int DEFAULT NULL,
