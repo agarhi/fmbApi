@@ -20,6 +20,7 @@ import com.fmb.api.db.entity.User;
 import com.fmb.api.error.handling.FmbException;
 import com.fmb.api.model.request.MenuRequest;
 import com.fmb.api.model.request.RazaRejectRequest;
+import com.fmb.api.model.request.RsvpRequest;
 import com.fmb.api.model.request.SignUpRequest;
 import com.fmb.api.model.response.RsvpResponse;
 import com.fmb.api.model.response.SignUpResponse;
@@ -71,6 +72,11 @@ public class FmbController {
 	@GetMapping("/rsvp/{userId}/{menuOffset}")
 	public ResponseEntity<List<RsvpResponse>> getRsvp(@PathVariable Integer userId, @PathVariable Integer menuOffset) throws FmbException {
 		return ResponseEntity.ok(rsvpService.getByUserIdAndMenuOffset(userId, menuOffset));
+	}
+	
+	@PutMapping("/rsvp")
+	public ResponseEntity<List<RsvpResponse>> updateRsvp(@RequestBody RsvpRequest rsvpRequest) throws FmbException {
+		return ResponseEntity.ok(rsvpService.updateRsvp(rsvpRequest.getUserId(), rsvpRequest.getMenuIds(), rsvpRequest.getOffset(), rsvpRequest.isChoice()));
 	}
 	
 	@PostMapping("/register")

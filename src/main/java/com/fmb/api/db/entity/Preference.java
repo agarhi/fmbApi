@@ -14,7 +14,7 @@ public class Preference {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	private ThaliSize size;
+	private String size;
 	
 	@Column(name="less_carbs")
 	private boolean lessCarbs;
@@ -25,10 +25,10 @@ public class Preference {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public ThaliSize getSize() {
+	public String getSize() {
 		return size;
 	}
-	public void setSize(ThaliSize size) {
+	public void setSize(String size) {
 		this.size = size;
 	}
 	public boolean isLessCarbs() {

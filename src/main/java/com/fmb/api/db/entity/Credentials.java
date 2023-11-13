@@ -60,25 +60,25 @@ public class Credentials {
 		this.role = role;
 	}
 	public boolean isAccountNonExpired() {
-		return true;
+		return this.accountNonExpired;
 	}
 	public void setAccountNonExpired(boolean accountNonExpired) {
 		this.accountNonExpired = accountNonExpired;
 	}
 	public boolean isCredentialsNonExpired() {
-		return true;
+		return this.credentialsNonExpired;
 	}
 	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
 		this.credentialsNonExpired = credentialsNonExpired;
 	}
 	public boolean isAccountNonLocked() {
-		return true;
+		return this.accountNonLocked;
 	}
 	public void setAccountNonLocked(boolean accountNonLocked) {
 		this.accountNonLocked = accountNonLocked;
 	}
 	public boolean isEnabled() {
-		return true;
+		return this.enabled;
 	}
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
@@ -93,6 +93,10 @@ public class Credentials {
 		credentials.setUsername(signUpRequest.getUserid());
 		String role = signUpRequest.getRole();
 		credentials.setRole(role == null ? "USER" : role);
+		credentials.setAccountNonExpired(true);
+		credentials.setAccountNonLocked(true);
+		credentials.setCredentialsNonExpired(true);
+		credentials.setEnabled(true);
 		return credentials;
 	}
 	

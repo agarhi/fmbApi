@@ -74,6 +74,7 @@ CREATE TABLE `rsvp` (
   `less_carbs` tinyint DEFAULT NULL,
   `adult_count` int DEFAULT NULL,
   `kids_count` int DEFAULT NULL,
+  `rsvp` tinyint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `menu_day_fk_idx` (`menu_id`),
   KEY `user_fk_idx` (`user_id`),
@@ -81,55 +82,55 @@ CREATE TABLE `rsvp` (
   CONSTRAINT `user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,27,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,28,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,29,'M',1,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,30,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,31,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,32,'M',0,3,1);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,33,'M',1,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,34,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,35,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,36,'M',1,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,37,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,38,'M',1,3,1);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,39,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,40,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,41,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,42,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,43,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,44,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,45,'M',0,3,1);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,46,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,47,'M',0,3,1);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,48,'M',1,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,49,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (1,50,'M',0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,27,'M',0,0,0,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,28,'M',0,0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,29,'M',1,0,0,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,30,'M',0,0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,31,'M',0,0,0,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,32,'M',0,3,1,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,33,'M',1,0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,34,'M',0,0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,35,'M',0,0,0,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,36,'M',1,0,0,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,37,'M',0,0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,38,'M',1,3,1,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,39,'M',0,0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,40,'M',0,0,0,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,41,'M',0,0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,42,'M',0,0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,43,'M',0,0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,44,'M',0,0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,45,'M',0,3,1,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,46,'M',0,0,0,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,47,'M',0,3,1,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,48,'M',1,0,0,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,49,'M',0,0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,50,'M',0,0,0,1);
 
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,27,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,28,'M',1,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,29,'L',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,30,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,31,'M',0,3,2);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,32,'M',1,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,33,'XL',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,34,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,35,'M',1,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,36,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,37,'M',0,3,1);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,38,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,39,'XXL',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,40,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,41,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,42,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,43,'M',1,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,44,'M',0,3,1);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,45,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,46,'M',0,3,1);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,47,'S',1,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,48,'M',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,49,'XS',0,0,0);
-INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`) VALUES (5,50,'M',1,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,27,'M',0,0,0,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,28,'M',1,0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,29,'L',0,0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,30,'M',0,0,0,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,31,'M',0,3,2,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,32,'M',1,0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,33,'XL',0,0,0,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,34,'M',0,0,0,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,35,'M',1,0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,36,'M',0,0,0,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,37,'M',0,3,1,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,38,'M',0,0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,39,'XXL',0,0,0,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,40,'M',0,0,0,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,41,'M',0,0,0,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,42,'M',0,0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,43,'M',1,0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,44,'M',0,3,1,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,45,'M',0,0,0,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,46,'M',0,3,1,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,47,'S',1,0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,48,'M',0,0,0,0);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,49,'XS',0,0,0,1);
+INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (5,50,'M',1,0,0,1);
 
 
 CREATE TABLE `user_raza_status` (
@@ -166,6 +167,8 @@ CREATE TABLE `user_preference` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+INSERT INTO `fmb_main`.`user_preference` (`size`,`less_carbs`) VALUES('L',0);
+
 CREATE TABLE `user_credentials` (
   `id` int NOT NULL AUTO_INCREMENT,
   `userid` varchar(20) NOT NULL,
@@ -189,6 +192,7 @@ CREATE TABLE `user` (
   `created_date` datetime NOT NULL,
   PRIMARY KEY (`address_id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `its_UNIQUE` (`its`),
   UNIQUE KEY `thalinum_UNIQUE` (`thalinum`),
   KEY `preference_fk_idx` (`preference_id`),
   KEY `credentials_fk_idx` (`credentials_id`),
@@ -198,6 +202,7 @@ CREATE TABLE `user` (
   CONSTRAINT `preference_fk` FOREIGN KEY (`preference_id`) REFERENCES `user_preference` (`id`),
   CONSTRAINT `raza_status_fk` FOREIGN KEY (`raza_status_id`) REFERENCES `user_raza_status` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 
 
@@ -243,3 +248,5 @@ BEGIN
    RETURN currval(seq_name);
 END$
 DELIMITER ;
+
+update user set preference_id = 1 where id = 1;

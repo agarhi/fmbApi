@@ -35,6 +35,8 @@ public class Rsvp {
 	
 	@Column(name="kids_count")
 	private int kidsCount;
+	
+	private boolean rsvp;
 
 	public int getId() {
 		return id;
@@ -91,12 +93,19 @@ public class Rsvp {
 	public void setKidsCount(int kidsCount) {
 		this.kidsCount = kidsCount;
 	}
+	public boolean isRsvp() {
+		return rsvp;
+	}
+
+	public void setRsvp(boolean rsvp) {
+		this.rsvp = rsvp;
+	}
 
 	@Override
 	public String toString() {
 		return "Rsvp [id=" + id + ", user=" + user + ", menu=" + menu + ", size=" + size + ", lessCarbs=" + lessCarbs
-				+ ", adultCount=" + adultCount + ", kidsCount=" + kidsCount + "]";
+				+ ", adultCount=" + adultCount + ", kidsCount=" + kidsCount + ", rsvp=" + rsvp + "]";
 	}
-	
+
 	
 }

@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fmb.api.db.entity.Menu;
 import com.fmb.api.db.entity.Rsvp;
@@ -73,15 +74,24 @@ public class RsvpServiceImpl implements RsvpService {
 				menuRsvp.setLessCarbs(rsvp.isLessCarbs());
 				menuRsvp.setAdultCount(rsvp.getAdultCount());
 				menuRsvp.setKidCount(rsvp.getKidsCount());
+				menuRsvpDate.setRsvp(rsvp.isRsvp());
+			} else {
+				menuRsvpDate.setRsvp(false);
 			}
 			menuRsvpDate.setDate(m.getDate());
-			menuRsvpDate.setRsvp(rsvp!=null);
 			menuRsvpDate.setMenuRsvp(menuRsvp);
 			response.add(menuRsvpDate);
 		}
 		
 		return response;
 		
+	}
+
+	@Override
+	@Transactional
+	public List<RsvpResponse> updateRsvp(Integer userId, Set<Integer> menuIds, int offset, boolean choice) throws FmbException {
+		rsvpRepository.updateRsvp(userId, menuIds, choice);
+		return getByUserIdAndMenuOffset(userId, offset);
 	}
 
 }
