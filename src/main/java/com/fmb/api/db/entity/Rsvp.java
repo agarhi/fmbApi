@@ -107,5 +107,17 @@ public class Rsvp {
 				+ ", adultCount=" + adultCount + ", kidsCount=" + kidsCount + ", rsvp=" + rsvp + "]";
 	}
 
+	public static Rsvp from(User user, Menu menu, Preference preference, boolean choice) {
+		Rsvp rsvp = new Rsvp();
+		rsvp.setUser(user);
+		rsvp.setMenu(menu);
+		if(preference != null) {
+			rsvp.setLessCarbs(preference.isLessCarbs());
+			rsvp.setSize(preference.getSize());
+		}
+		rsvp.setRsvp(choice);
+		return rsvp;
+	}
+
 	
 }

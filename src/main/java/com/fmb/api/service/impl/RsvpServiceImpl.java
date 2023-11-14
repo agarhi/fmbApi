@@ -18,7 +18,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fmb.api.db.entity.Menu;
 import com.fmb.api.db.entity.Rsvp;
+import com.fmb.api.db.entity.User;
+import com.fmb.api.db.repo.MenuRepository;
 import com.fmb.api.db.repo.RsvpRepository;
+import com.fmb.api.db.repo.UserRepository;
 import com.fmb.api.error.handling.FmbException;
 import com.fmb.api.model.MenuRsvp;
 import com.fmb.api.model.response.RsvpResponse;
@@ -38,6 +41,12 @@ public class RsvpServiceImpl implements RsvpService {
 	
 	@PersistenceContext
     private EntityManager entityManager;
+	
+	@Autowired
+	private MenuRepository menuRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	@Override
 	public List<RsvpResponse> getByUserIdAndMenuOffset(int userid, int offset) throws FmbException {
@@ -90,7 +99,20 @@ public class RsvpServiceImpl implements RsvpService {
 	@Override
 	@Transactional
 	public List<RsvpResponse> updateRsvp(Integer userId, Set<Integer> menuIds, int offset, boolean choice) throws FmbException {
-		rsvpRepository.updateRsvp(userId, menuIds, choice);
+		List<Rsvp> rsvpList = new ArrayList<>();
+		for(Integer menuid : menuIds) {
+			Rsvp rsvp = rsvpRepository.getByMenuIdAndUserId(menuid, userId);
+			if(rsvp == null) {
+				User user = userRepository.findById(userId).get();
+				Menu menu = menuRepository.findById(menuid).get();
+				rsvp = Rsvp.from(user, menu, user.getPreference(), choice);
+				rsvpList.add(rsvp);
+			} else {
+				rsvp.setRsvp(choice); // This should get saved by default at the end of the transaction
+			}
+			
+		}
+		rsvpRepository.saveAll(rsvpList);
 		return getByUserIdAndMenuOffset(userId, offset);
 	}
 

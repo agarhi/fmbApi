@@ -76,11 +76,13 @@ CREATE TABLE `rsvp` (
   `kids_count` int DEFAULT NULL,
   `rsvp` tinyint NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE (`user_id`,`menu_id`),
   KEY `menu_day_fk_idx` (`menu_id`),
   KEY `user_fk_idx` (`user_id`),
   CONSTRAINT `menu_day_fk` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`id`),
   CONSTRAINT `user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,27,'M',0,0,0,1);
 INSERT INTO `fmb_main`.`rsvp`(`user_id`,`menu_id`,`size`,`less_carbs`,`adult_count`,`kids_count`,`rsvp`) VALUES (1,28,'M',0,0,0,0);
