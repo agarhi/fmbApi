@@ -5,9 +5,12 @@ import java.util.Set;
 public class RsvpRequest {
 	
 	private int userId;
-	private Set<Integer> menuIds;
+	private Set<Integer> menuIds; // To be used for things like RSVP all
+	private int menuId; // This will be used in case we want to update one record like for size or less carbs
 	private boolean choice;
 	private int offset;
+	private String size;
+	private boolean lessCarbsChoice;
 	
 	public int getUserId() {
 		return userId;
@@ -32,6 +35,24 @@ public class RsvpRequest {
 	}
 	public void setOffset(int offset) {
 		this.offset = offset;
+	}
+	public int getMenuId() {
+		return menuId;
+	}
+	public void setMenuId(int menuId) {
+		this.menuId = menuId;
+	}
+	public String getSize() {
+		return size;
+	}
+	public void setSize(String size) {
+		this.size = size;
+	}
+	public boolean isLessCarbsChoice() {
+		return lessCarbsChoice;
+	}
+	public void setLessCarbsChoice(boolean lessCarbsChoice) {
+		this.lessCarbsChoice = lessCarbsChoice;
 	}
 	
 	

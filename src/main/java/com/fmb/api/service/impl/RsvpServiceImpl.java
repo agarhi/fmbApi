@@ -108,11 +108,29 @@ public class RsvpServiceImpl implements RsvpService {
 				rsvp = Rsvp.from(user, menu, user.getPreference(), choice);
 				rsvpList.add(rsvp);
 			} else {
-				rsvp.setRsvp(choice); // This should get saved by default at the end of the transaction
+				rsvp.setRsvp(choice); 
 			}
 			
 		}
 		rsvpRepository.saveAll(rsvpList);
+		return getByUserIdAndMenuOffset(userId, offset);
+	}
+
+	@Override
+	public List<RsvpResponse> updateSize(Integer userId, Integer menuId, int offset, String size) throws FmbException {
+		Rsvp rsvp = rsvpRepository.getByMenuIdAndUserId(menuId, userId);
+		rsvp.setSize(size); 
+		rsvpRepository.save(rsvp);
+		return getByUserIdAndMenuOffset(userId, offset);
+	}
+
+	@Override
+	public List<RsvpResponse> updateCarbSelection(Integer userId, Integer menuId, int offset, boolean lessCarbsChoice)
+			throws FmbException {
+		Rsvp rsvp = rsvpRepository.getByMenuIdAndUserId(menuId, userId);
+		logger.info("updateCarbs Rsvp loaded "+rsvp);
+		rsvp.setLessCarbs(lessCarbsChoice); 
+		rsvpRepository.save(rsvp);
 		return getByUserIdAndMenuOffset(userId, offset);
 	}
 

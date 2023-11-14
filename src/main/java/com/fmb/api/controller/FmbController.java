@@ -79,6 +79,16 @@ public class FmbController {
 		return ResponseEntity.ok(rsvpService.updateRsvp(rsvpRequest.getUserId(), rsvpRequest.getMenuIds(), rsvpRequest.getOffset(), rsvpRequest.isChoice()));
 	}
 	
+	@PutMapping("/rsvp/size")
+	public ResponseEntity<List<RsvpResponse>> updateRsvpSize(@RequestBody RsvpRequest rsvpRequest) throws FmbException {
+		return ResponseEntity.ok(rsvpService.updateSize(rsvpRequest.getUserId(), rsvpRequest.getMenuId(), rsvpRequest.getOffset(), rsvpRequest.getSize()));
+	}
+	
+	@PutMapping("/rsvp/carbs")
+	public ResponseEntity<List<RsvpResponse>> updateRsvpCarbsChoice(@RequestBody RsvpRequest rsvpRequest) throws FmbException {
+		return ResponseEntity.ok(rsvpService.updateCarbSelection(rsvpRequest.getUserId(), rsvpRequest.getMenuId(), rsvpRequest.getOffset(), rsvpRequest.isLessCarbsChoice()));
+	}
+	
 	@PostMapping("/register")
 	public ResponseEntity<SignUpResponse> signUp(@RequestBody SignUpRequest signUpRequest) throws FmbException {
 		userService.register(signUpRequest);
