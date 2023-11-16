@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +31,6 @@ import com.fmb.api.service.UserService;
 
 @RestController
 @RequestMapping("/")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class FmbController {
 		
 	@Autowired
@@ -69,24 +67,24 @@ public class FmbController {
 		return ResponseEntity.ok(menuService.getByWeek(menuRequest.getOffset()));
 	}
 	
-	@GetMapping("/rsvp/{userId}/{menuOffset}")
-	public ResponseEntity<List<RsvpResponse>> getRsvp(@PathVariable Integer userId, @PathVariable Integer menuOffset) throws FmbException {
-		return ResponseEntity.ok(rsvpService.getByUserIdAndMenuOffset(userId, menuOffset));
+	@GetMapping("/rsvp/{menuOffset}")
+	public ResponseEntity<List<RsvpResponse>> getRsvp(@PathVariable Integer menuOffset) throws FmbException {
+		return ResponseEntity.ok(rsvpService.getByUserIdAndMenuOffset(menuOffset));
 	}
 	
 	@PutMapping("/rsvp")
 	public ResponseEntity<List<RsvpResponse>> updateRsvp(@RequestBody RsvpRequest rsvpRequest) throws FmbException {
-		return ResponseEntity.ok(rsvpService.updateRsvp(rsvpRequest.getUserId(), rsvpRequest.getMenuIds(), rsvpRequest.getOffset(), rsvpRequest.isChoice()));
+		return ResponseEntity.ok(rsvpService.updateRsvp(rsvpRequest.getMenuIds(), rsvpRequest.getOffset(), rsvpRequest.isChoice()));
 	}
 	
 	@PutMapping("/rsvp/size")
 	public ResponseEntity<List<RsvpResponse>> updateRsvpSize(@RequestBody RsvpRequest rsvpRequest) throws FmbException {
-		return ResponseEntity.ok(rsvpService.updateSize(rsvpRequest.getUserId(), rsvpRequest.getMenuId(), rsvpRequest.getOffset(), rsvpRequest.getSize()));
+		return ResponseEntity.ok(rsvpService.updateSize(rsvpRequest.getMenuId(), rsvpRequest.getOffset(), rsvpRequest.getSize()));
 	}
 	
 	@PutMapping("/rsvp/carbs")
 	public ResponseEntity<List<RsvpResponse>> updateRsvpCarbsChoice(@RequestBody RsvpRequest rsvpRequest) throws FmbException {
-		return ResponseEntity.ok(rsvpService.updateCarbSelection(rsvpRequest.getUserId(), rsvpRequest.getMenuId(), rsvpRequest.getOffset(), rsvpRequest.isLessCarbsChoice()));
+		return ResponseEntity.ok(rsvpService.updateCarbSelection(rsvpRequest.getMenuId(), rsvpRequest.getOffset(), rsvpRequest.isLessCarbsChoice()));
 	}
 	
 	@PostMapping("/register")

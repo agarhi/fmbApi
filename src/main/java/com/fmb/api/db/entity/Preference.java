@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fmb.api.model.request.SignUpRequest;
+
 @Entity
 @Table(name="user_preference")
 public class Preference {
@@ -36,6 +38,13 @@ public class Preference {
 	}
 	public void setLessCarbs(boolean lessCarbs) {
 		this.lessCarbs = lessCarbs;
+	}
+	
+	public static Preference from(SignUpRequest signUpRequest) {
+		Preference preference = new Preference();
+		preference.setSize(signUpRequest.getSize());
+		preference.setLessCarbs(signUpRequest.isLessCarbs());
+		return preference;
 	}
 	
 	

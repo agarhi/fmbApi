@@ -3,6 +3,7 @@ package com.fmb.api.service.impl;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.fmb.api.db.entity.User;
 import com.fmb.api.db.repo.UserRepository;
@@ -53,7 +56,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getByUsername(String username) throws FmbException {
 		try {
-			return userRepository.getByUsername(username);
+			User user = userRepository.getByUsername(username);
+			session().setAttribute("CURRENT_USER", user);
+			return user;
 		} catch (Exception e) {
 			throw new FmbException(e.getMessage());
 		}
@@ -65,5 +70,9 @@ public class UserServiceImpl implements UserService {
         return Integer.parseInt(query.getSingleResult().toString());
 	}
 	
- 
+	private HttpSession session() {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        return attr.getRequest().getSession(true); // true == allow create
+    }
+	
 }

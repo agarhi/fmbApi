@@ -4,7 +4,6 @@ import java.util.Set;
 
 public class RsvpRequest {
 	
-	private int userId;
 	private Set<Integer> menuIds; // To be used for things like RSVP all
 	private int menuId; // This will be used in case we want to update one record like for size or less carbs
 	private boolean choice;
@@ -12,12 +11,7 @@ public class RsvpRequest {
 	private String size;
 	private boolean lessCarbsChoice;
 	
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+	
 	public Set<Integer> getMenuIds() {
 		return menuIds;
 	}

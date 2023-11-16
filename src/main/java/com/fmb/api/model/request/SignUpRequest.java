@@ -15,6 +15,8 @@ public class SignUpRequest {
 	private String userid;
 	private String password;
 	private String role;
+	private String size; // preference
+	private boolean lessCarbs;
 	
 	public String getFname() {
 		return fname;
@@ -101,12 +103,26 @@ public class SignUpRequest {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
+	public String getSize() {
+		return size;
+	}
+	public void setSize(String size) {
+		this.size = size;
+	}
+	public boolean isLessCarbs() {
+		return lessCarbs;
+	}
+	public void setLessCarbs(boolean lessCarbs) {
+		this.lessCarbs = lessCarbs;
+	}
+	
 	@Override
 	public String toString() {
 		return "SignUpRequest [fname=" + fname + ", lname=" + lname + ", its=" + its + ", addr1=" + addr1 + ", addr2="
 				+ addr2 + ", city=" + city + ", zip=" + zip + ", state=" + state + ", country=" + country + ", phone="
-				+ phone + ", email=" + email + ", userid=" + userid + ", password=" + password + "]";
+				+ phone + ", email=" + email + ", userid=" + userid + ", password=" + password + ", role=" + role
+				+ ", size=" + size + ", lessCarbs=" + lessCarbs + "]";
 	}
-	
 	
 }

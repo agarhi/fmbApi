@@ -125,6 +125,10 @@ public class User {
 		
 		Credentials creds = Credentials.from(signUpRequest);
 		user.setCredentials(creds);
+		
+		Preference preference =  Preference.from(signUpRequest);
+		user.setPreference(preference);
+		
 		return user;
 	}
 	@Override

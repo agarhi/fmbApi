@@ -16,7 +16,6 @@ public class Menu {
 	private Date date;
 	private String item;
 	private boolean niyaz;
-	private boolean readonly;
 	
 	public int getId() {
 		return id;
@@ -42,17 +41,11 @@ public class Menu {
 	public void setNiyaz(boolean niyaz) {
 		this.niyaz = niyaz;
 	}
-	public boolean isReadonly() {
-		return readonly;
-	}
-	public void setReadonly(boolean readonly) {
-		this.readonly = readonly;
-	}
+	
 	
 	@Override
 	public String toString() {
-		return "Menu [id=" + id + ", date=" + date + ", item=" + item + ", niyaz=" + niyaz + ", readonly=" + readonly
-				+ "]";
+		return "Menu [id=" + id + ", date=" + date + ", item=" + item + ", niyaz=" + niyaz + "]";
 	}
 	
 }

@@ -9,12 +9,15 @@ import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.fmb.api.db.entity.Menu;
 import com.fmb.api.db.entity.Rsvp;
@@ -47,10 +50,12 @@ public class RsvpServiceImpl implements RsvpService {
 	
 	@Autowired
 	private UserRepository userRepository;
-
+	
 	@Override
-	public List<RsvpResponse> getByUserIdAndMenuOffset(int userid, int offset) throws FmbException {
+	public List<RsvpResponse> getByUserIdAndMenuOffset(int offset) throws FmbException {
 		// offset 0 means current week
+		
+		int useridSession = ((User)session().getAttribute("CURRENT_USER")).getId();
 		
 		List<Menu> menuList =  menuService.getByWeek(offset);
 		logger.info("menuList "+menuList.toString());
@@ -61,9 +66,9 @@ public class RsvpServiceImpl implements RsvpService {
 		}
 		
 		logger.info("menuIds "+menuIds.toString());
-		logger.info("userid "+userid);
+		logger.info("userid "+useridSession);
 		
-		List<Rsvp> rsvpList = rsvpRepository.getByMenuIdsAndUserId(menuIds, userid);
+		List<Rsvp> rsvpList = rsvpRepository.getByMenuIdsAndUserId(menuIds, useridSession);
 		logger.info("rsvpList "+rsvpList);
 		
 		Map<Integer, Rsvp> rsvpMap = new HashMap<>();
@@ -98,7 +103,8 @@ public class RsvpServiceImpl implements RsvpService {
 
 	@Override
 	@Transactional
-	public List<RsvpResponse> updateRsvp(Integer userId, Set<Integer> menuIds, int offset, boolean choice) throws FmbException {
+	public List<RsvpResponse> updateRsvp(Set<Integer> menuIds, int offset, boolean choice) throws FmbException {
+		Integer userId = userId();
 		List<Rsvp> rsvpList = new ArrayList<>();
 		for(Integer menuid : menuIds) {
 			Rsvp rsvp = rsvpRepository.getByMenuIdAndUserId(menuid, userId);
@@ -113,25 +119,35 @@ public class RsvpServiceImpl implements RsvpService {
 			
 		}
 		rsvpRepository.saveAll(rsvpList);
-		return getByUserIdAndMenuOffset(userId, offset);
+		return getByUserIdAndMenuOffset(offset);
 	}
 
 	@Override
-	public List<RsvpResponse> updateSize(Integer userId, Integer menuId, int offset, String size) throws FmbException {
-		Rsvp rsvp = rsvpRepository.getByMenuIdAndUserId(menuId, userId);
+	public List<RsvpResponse> updateSize(Integer menuId, int offset, String size) throws FmbException {
+		Rsvp rsvp = rsvpRepository.getByMenuIdAndUserId(menuId, userId());
 		rsvp.setSize(size); 
 		rsvpRepository.save(rsvp);
-		return getByUserIdAndMenuOffset(userId, offset);
+		return getByUserIdAndMenuOffset(offset);
 	}
 
 	@Override
-	public List<RsvpResponse> updateCarbSelection(Integer userId, Integer menuId, int offset, boolean lessCarbsChoice)
+	public List<RsvpResponse> updateCarbSelection(Integer menuId, int offset, boolean lessCarbsChoice)
 			throws FmbException {
-		Rsvp rsvp = rsvpRepository.getByMenuIdAndUserId(menuId, userId);
+		Rsvp rsvp = rsvpRepository.getByMenuIdAndUserId(menuId, userId());
 		logger.info("updateCarbs Rsvp loaded "+rsvp);
 		rsvp.setLessCarbs(lessCarbsChoice); 
 		rsvpRepository.save(rsvp);
-		return getByUserIdAndMenuOffset(userId, offset);
+		return getByUserIdAndMenuOffset(offset);
 	}
-
+	
+	private HttpSession session() {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        return attr.getRequest().getSession(true); // true == allow create
+    }
+	
+	private int userId() {
+		int userId = ((User)session().getAttribute("CURRENT_USER")).getId();;
+		logger.info("User id from session is "+userId);
+		return userId;
+	}
 }
