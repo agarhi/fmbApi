@@ -47,5 +47,12 @@ public class Menu {
 	public String toString() {
 		return "Menu [id=" + id + ", date=" + date + ", item=" + item + ", niyaz=" + niyaz + "]";
 	}
+	public static Menu from(Date date, String item, boolean isNiyaz) {
+		Menu menu = new Menu();
+		menu.setDate(date);
+		menu.setItem(item);
+		menu.setNiyaz(isNiyaz);
+		return menu;
+	}
 	
 }

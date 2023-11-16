@@ -1,13 +1,13 @@
 package com.fmb.api.model.request;
 
 public class MenuRequest {
-	private int offset;
+	private long offset;
 
-	public int getOffset() {
+	public long getOffset() {
 		return offset;
 	}
 
-	public void setOffset(int offset) {
+	public void setOffset(long offset) {
 		this.offset = offset;
 	}
 	
