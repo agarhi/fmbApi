@@ -68,7 +68,8 @@ public class FmbController {
 	}
 	
 	@PutMapping("/menu")
-	public ResponseEntity<String> getByWeek(@RequestBody List<Menu> menus) throws FmbException {
+	@Secured("ROLE_ADMIN")
+	public ResponseEntity<String> updateMenu(@RequestBody List<Menu> menus) throws FmbException {
 		menuService.save(menus);
 		return ResponseEntity.ok("Menus saved");
 	}
