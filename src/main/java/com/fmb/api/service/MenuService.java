@@ -11,5 +11,7 @@ public interface MenuService {
 	public List<Menu> getByWeek(long offset) throws FmbException;
 	
 	public List<Menu> getByDate(String date) throws FmbException;
+	
+	public void save(List<Menu> menus) throws FmbException;
 
 }

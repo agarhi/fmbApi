@@ -67,6 +67,12 @@ public class FmbController {
 		return ResponseEntity.ok(menuService.getByWeek(menuRequest.getOffset()));
 	}
 	
+	@PutMapping("/menu")
+	public ResponseEntity<String> getByWeek(@RequestBody List<Menu> menus) throws FmbException {
+		menuService.save(menus);
+		return ResponseEntity.ok("Menus saved");
+	}
+	
 	@GetMapping("/menu/{date}")
 	public ResponseEntity<List<Menu>> getByDate(@PathVariable String date) throws FmbException {
 		return ResponseEntity.ok(menuService.getByDate(date));

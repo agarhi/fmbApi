@@ -91,4 +91,24 @@ public class MenuServiceImpl implements MenuService {
 		return mondayInMillis;
 	}
 
+	@Override
+	public void save(List<Menu> menus) throws FmbException {
+		if(isNew(menus)) {
+			logger.info("New menus "+menus);
+			menuRepository.saveAll(menus);
+		} else {
+			for(Menu menu : menus) {
+				int id = menu.getId();
+				Menu persistedMenu = menuRepository.findById(id).get();
+				persistedMenu.setItem(menu.getItem());
+				persistedMenu.setNiyaz(menu.isNiyaz());
+				menuRepository.save(persistedMenu);
+			}
+		}
+	}
+
+	private boolean isNew(List<Menu> menus) {
+		return menus.get(0).getId() == 0; // UI Can send new menus with ids 0 or edited menus with Ids
+	}
+
 }
