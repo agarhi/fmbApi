@@ -14,25 +14,37 @@ import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fmb.api.model.request.SignUpRequest;
 
 @Entity
 @Table(name="user_credentials")
 public class Credentials {
 	
+	@JsonIgnore
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	@JsonIgnore
 	@Column(name="userid")
 	private String username;
+	
+	@JsonIgnore
 	private String password;
 	
 	private String role;
 	
+	@JsonIgnore
 	private boolean accountNonExpired;
+	
+	@JsonIgnore
 	private boolean credentialsNonExpired;
+	
+	@JsonIgnore
 	private boolean accountNonLocked;
+	
+	@JsonIgnore
 	private boolean enabled;
 	
 	public int getId() {
@@ -84,6 +96,7 @@ public class Credentials {
 		this.enabled = enabled;
 	}
 	
+	@JsonIgnore
 	public List<? extends GrantedAuthority> getAuthorities() {
 		return Arrays.asList(new SimpleGrantedAuthority("ROLE_".concat(role)));
 	}

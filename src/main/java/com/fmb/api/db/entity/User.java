@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fmb.api.model.request.SignUpRequest;
 
 @Entity
@@ -27,7 +26,6 @@ public class User {
 	private String fname;
 	private String lname;
 	
-	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "credentials_id")
 	private Credentials credentials;
