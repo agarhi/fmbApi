@@ -15,17 +15,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fmb.api.db.entity.Menu;
 import com.fmb.api.db.entity.RazaStatus;
+import com.fmb.api.db.entity.SpecialInstructions;
 import com.fmb.api.db.entity.User;
 import com.fmb.api.error.handling.FmbException;
 import com.fmb.api.model.request.MenuRequest;
 import com.fmb.api.model.request.RazaRejectRequest;
 import com.fmb.api.model.request.RsvpRequest;
 import com.fmb.api.model.request.SignUpRequest;
+import com.fmb.api.model.request.SpInstructionsRequest;
 import com.fmb.api.model.response.RsvpResponse;
 import com.fmb.api.model.response.SignUpResponse;
 import com.fmb.api.service.MenuService;
 import com.fmb.api.service.RazaStatusService;
 import com.fmb.api.service.RsvpService;
+import com.fmb.api.service.SpInstructionsService;
 import com.fmb.api.service.TestDBService;
 import com.fmb.api.service.UserService;
 
@@ -47,6 +50,9 @@ public class FmbController {
 	
 	@Autowired
 	private RsvpService rsvpService;
+	
+	@Autowired
+	private SpInstructionsService spInstructionsService;
 	
 	
 		
@@ -124,5 +130,17 @@ public class FmbController {
 	@PutMapping("/raza/reject/{its}")
 	public ResponseEntity<RazaStatus> rejectRazaStatus(@PathVariable String its, @RequestBody RazaRejectRequest razaRejectRequest) throws FmbException {
 		return ResponseEntity.ok(razaStatusService.rejectRazaStatus(its, razaRejectRequest.getReason()));
+	}
+	
+	@GetMapping("/spInstructions/{date}")
+	public ResponseEntity<SpecialInstructions> getSpInstructions(@PathVariable String date) throws FmbException {
+		return ResponseEntity.ok(spInstructionsService.getByDate(date));
+	}
+	
+	@PutMapping("/spInstructions")
+	@Secured("ROLE_ADMIN")
+	public ResponseEntity<String> addSpecialInstructions(@RequestBody SpInstructionsRequest speInstructionsRequest) throws FmbException {
+		spInstructionsService.save(speInstructionsRequest);
+		return ResponseEntity.ok("{\"result\": \"Instructions saved\"}");
 	}
 }
