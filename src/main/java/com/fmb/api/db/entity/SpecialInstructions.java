@@ -48,7 +48,7 @@ public class SpecialInstructions {
 	
 	public static SpecialInstructions withEmptyInstructions(String date) {
 		SpecialInstructions specialInstructions = new SpecialInstructions();
-		specialInstructions.setInstructions("TBD");
+		specialInstructions.setInstructions("No special Instructions");
 		specialInstructions.setDate(Date.valueOf(date));
 		return specialInstructions;
 	}
