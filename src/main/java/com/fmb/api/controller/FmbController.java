@@ -123,11 +123,13 @@ public class FmbController {
 	}
 	
 	@PutMapping("/raza/approve/{its}")
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<RazaStatus> approveRazaStatus(@PathVariable String its) throws FmbException {
 		return ResponseEntity.ok(razaStatusService.approveRazaStatus(its));
 	}
 	
 	@PutMapping("/raza/reject/{its}")
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<RazaStatus> rejectRazaStatus(@PathVariable String its, @RequestBody RazaRejectRequest razaRejectRequest) throws FmbException {
 		return ResponseEntity.ok(razaStatusService.rejectRazaStatus(its, razaRejectRequest.getReason()));
 	}
