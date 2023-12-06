@@ -1,6 +1,7 @@
 package com.fmb.api.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fmb.api.db.entity.FoodFeedback;
 import com.fmb.api.db.entity.Menu;
 import com.fmb.api.db.entity.RazaStatus;
 import com.fmb.api.db.entity.SpecialInstructions;
@@ -25,6 +28,7 @@ import com.fmb.api.model.request.SignUpRequest;
 import com.fmb.api.model.request.SpInstructionsRequest;
 import com.fmb.api.model.response.RsvpResponse;
 import com.fmb.api.model.response.SignUpResponse;
+import com.fmb.api.service.FoodFeedbackService;
 import com.fmb.api.service.MenuService;
 import com.fmb.api.service.RazaStatusService;
 import com.fmb.api.service.RsvpService;
@@ -54,8 +58,9 @@ public class FmbController {
 	@Autowired
 	private SpInstructionsService spInstructionsService;
 	
+	@Autowired
+	private FoodFeedbackService foodFeedbackService;
 	
-		
 	@GetMapping("/test")
 	@Secured("ROLE_USER")
 	public ResponseEntity<String> hello() {
@@ -144,5 +149,10 @@ public class FmbController {
 	public ResponseEntity<String> addSpecialInstructions(@RequestBody SpInstructionsRequest speInstructionsRequest) throws FmbException {
 		spInstructionsService.save(speInstructionsRequest);
 		return ResponseEntity.ok("{\"result\": \"Instructions saved\"}");
+	}
+	
+	@GetMapping("/feedback")
+	public ResponseEntity<List<FoodFeedback>> getFeedback(@RequestParam Set<Integer> menuIds) throws FmbException {
+		return ResponseEntity.ok(foodFeedbackService.getByMenuIds(menuIds));
 	}
 }

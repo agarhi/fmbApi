@@ -197,3 +197,22 @@ END$
 DELIMITER ;
 
 update user set preference_id = 1 where id = 1;
+
+CREATE TABLE `feedback` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `menu_item` int DEFAULT NULL,
+  `quality` varchar(45) NOT NULL,
+  `comment` varchar(200) DEFAULT NULL,
+  `picture` longblob,
+  `user` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `menu_item_fk_idx` (`menu_item`),
+  KEY `user_fk_idx` (`user`),
+  CONSTRAINT `menu_item_fk` FOREIGN KEY (`menu_item`) REFERENCES `menu` (`id`),
+  CONSTRAINT `user_fk` FOREIGN KEY (`user`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `fmb_main`.`feedback` (`menu_item`, `quality`,`comment`,`user`) VALUES (48, 'Great', 'Badhiya',1);
+INSERT INTO `fmb_main`.`feedback` (`menu_item`, `quality`,`comment`,`user`) VALUES (48, 'Ok', 'Theek',2);
+INSERT INTO `fmb_main`.`feedback` (`menu_item`, `quality`,`comment`) VALUES (53, 'Extra Ordinary', 'Bau Bes');
+INSERT INTO `fmb_main`.`feedback` (`menu_item`, `quality`,`comment`,`user`) VALUES (53, 'Satisfactory', 'Maza nahi aaya',2);
