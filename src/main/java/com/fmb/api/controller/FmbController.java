@@ -21,6 +21,7 @@ import com.fmb.api.db.entity.RazaStatus;
 import com.fmb.api.db.entity.SpecialInstructions;
 import com.fmb.api.db.entity.User;
 import com.fmb.api.error.handling.FmbException;
+import com.fmb.api.model.request.FeedbackRequest;
 import com.fmb.api.model.request.MenuRequest;
 import com.fmb.api.model.request.RazaRejectRequest;
 import com.fmb.api.model.request.RsvpRequest;
@@ -154,5 +155,11 @@ public class FmbController {
 	@GetMapping("/feedback")
 	public ResponseEntity<List<FoodFeedback>> getFeedback(@RequestParam Set<Integer> menuIds) throws FmbException {
 		return ResponseEntity.ok(foodFeedbackService.getByMenuIds(menuIds));
+	}
+	
+	@PostMapping("/feedback")
+	public ResponseEntity<String> postFeedback(@RequestBody FeedbackRequest feedbackRequest) throws FmbException {
+		foodFeedbackService.save(feedbackRequest);
+		return ResponseEntity.ok("Feedback received");
 	}
 }

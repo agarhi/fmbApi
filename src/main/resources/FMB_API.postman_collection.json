@@ -1,0 +1,388 @@
+{
+	"info": {
+		"_postman_id": "7426b4e1-3c75-4362-bb9a-c4ba769c31eb",
+		"name": "FMB API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27966841"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "fooClientId",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "secret",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "Basic Zm9vQ2xpZW50SWQ6c2VjcmV0",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "maadg",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "maad53",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/fmbApi/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"fmbApi",
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/fmbApi/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"fmbApi",
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Admin test",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fname\":\"Maad\",\n    \"lname\":\"Garhi\",\n    \"its\":\"51525253\",\n    \"addr1\":\"8118 N Lake Dr\",\n    \"addr2\": \"Apt F\",\n    \"city\": \"Dublin\",\n    \"state\": \"CA\",\n    \"zip\":\"94568\",\n    \"country\":\"USA\",\n    \"phone\":\"4157571145\",\n    \"email\":\"maad.garhi@gmail.com\",\n    \"userid\":\"mgarhi\",\n    \"password\": \"kaha53K@H@\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/fmbApi/user/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"fmbApi",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Raza",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Approve Raza",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://10.0.0.121:8080/fmbApi/raza/status/53525253",
+					"protocol": "http",
+					"host": [
+						"10",
+						"0",
+						"0",
+						"121"
+					],
+					"port": "8080",
+					"path": [
+						"fmbApi",
+						"raza",
+						"status",
+						"53525253"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reject raza",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://10.0.0.121:8080/fmbApi/raza/reject/53525253?reason=Aiwe hi",
+					"protocol": "http",
+					"host": [
+						"10",
+						"0",
+						"0",
+						"121"
+					],
+					"port": "8080",
+					"path": [
+						"fmbApi",
+						"raza",
+						"reject",
+						"53525253"
+					],
+					"query": [
+						{
+							"key": "reason",
+							"value": "Aiwe hi"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Menu",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Menu By Date",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Menu",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"id\": 0,\n        \"date\": \"2024-01-01\",\n        \"item\": \"DCP\",\n        \"niyaz\": false\n    },\n    {\n        \"id\": 0,\n        \"date\": \"2024-01-02\",\n        \"item\": \"Kari Chawal\",\n        \"niyaz\": true\n    },\n    {\n        \"id\": 0,\n        \"date\": \"2024-01-03\",\n        \"item\": \"TBD\",\n        \"niyaz\": false\n    },\n    {\n        \"id\": 0,\n        \"date\": \"2024-01-04\",\n        \"item\": \"TBD\",\n        \"niyaz\": false\n    },\n    {\n        \"id\": 0,\n        \"date\": \"2024-01-05\",\n        \"item\": \"TBD\",\n        \"niyaz\": false\n    },\n    {\n        \"id\": 0,\n        \"date\": \"2024-01-06\",\n        \"item\": \"TBD\",\n        \"niyaz\": false\n    },\n    {\n        \"id\": 0,\n        \"date\": \"2024-01-07\",\n        \"item\": \"Khurdi Khichdi\",\n        \"niyaz\": false\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/fmbApi/menu",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"fmbApi",
+						"menu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rsvp",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Rsvp",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\" : 1,\n    \"menuIds\" : [],\n    \"offset\" : .\n    \"choice\" : true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/fmbApi/rsvp",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"fmbApi",
+						"rsvp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SpIns",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "SpIns Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA2ODEyNjQsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiJiYWYwOWE0Ni1kODRjLTRiZjctYThlYy0zMDQwMWM2NmIwZDQiLCJjbGllbnRfaWQiOiJmb29DbGllbnRJZCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.DbTLbif3bRoUg4FLERI6raayHr2qLA1qG3vfxXJK3Bk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"date\" : \"2023-11-22\",\n    \"instructions\" : \"Mix the non-veg with terian\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/fmbApi/spInstructions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"fmbApi",
+						"spInstructions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Feedback",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Feedback Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDE5MDIxMDgsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiI5NGMyZTNiOC1hYTk5LTQyOGMtOTI3Zi01ZjlkYTcwNmVmMjMiLCJjbGllbnRfaWQiOiJmb29DbGllbnRJZCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.qYk6RqY8qojEYdIqCTU65RzQgofn3BRfoKqrTYLKRa4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"quality\" : \"Jhakaas\",\n    \"comment\" : \"Bindaas\",\n    \"menuId\": 53,\n    \"anonymous\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/fmbApi/feedback",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"fmbApi",
+						"feedback"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

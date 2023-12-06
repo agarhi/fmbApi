@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fmb.api.model.request.FeedbackRequest;
+
 @Entity
 @Table(name="feedback")
 public class FoodFeedback {
@@ -26,7 +28,7 @@ public class FoodFeedback {
 	private Menu menu;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user")
+	@JoinColumn(name = "user", nullable = true)
 	private User user;
 
 	public int getId() {
@@ -67,5 +69,12 @@ public class FoodFeedback {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public static FoodFeedback from(FeedbackRequest feedbackRequest) {
+		FoodFeedback feedback = new FoodFeedback();
+		feedback.setComment(feedbackRequest.getComment());
+		feedback.setQuality(feedbackRequest.getQuality());
+		return feedback;
 	}
 }
