@@ -346,7 +346,7 @@
 			"response": []
 		},
 		{
-			"name": "Feedback Copy",
+			"name": "Feedback",
 			"request": {
 				"auth": {
 					"type": "bearer",

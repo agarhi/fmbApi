@@ -160,6 +160,6 @@ public class FmbController {
 	@PostMapping("/feedback")
 	public ResponseEntity<String> postFeedback(@RequestBody FeedbackRequest feedbackRequest) throws FmbException {
 		foodFeedbackService.save(feedbackRequest);
-		return ResponseEntity.ok("Feedback received");
+		return ResponseEntity.ok("{\"result\": \"Feedback received\"}");
 	}
 }
