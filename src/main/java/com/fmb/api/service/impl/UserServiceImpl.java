@@ -18,6 +18,7 @@ import com.fmb.api.db.entity.User;
 import com.fmb.api.db.repo.UserRepository;
 import com.fmb.api.error.handling.FmbException;
 import com.fmb.api.model.request.SignUpRequest;
+import com.fmb.api.service.RazaStatusService;
 import com.fmb.api.service.UserService;
 
 @Service
@@ -33,6 +34,9 @@ public class UserServiceImpl implements UserService {
 	
 	@PersistenceContext
     private EntityManager entityManager;
+	
+	@Autowired
+	private RazaStatusService razaStatusService;
 	
 	@Override
 	public void register(SignUpRequest signUpRequest) throws FmbException {
@@ -57,6 +61,10 @@ public class UserServiceImpl implements UserService {
 	public User getByUsername(String username) throws FmbException {
 		try {
 			User user = userRepository.getByUsername(username);
+			boolean razaRecd = razaStatusService.getRazaStatus(user.getIts()).isRazaReceived();
+			if(!razaRecd) {
+				throw new FmbException("Raza not received");
+			}
 			session().setAttribute("CURRENT_USER", user);
 			return user;
 		} catch (Exception e) {
