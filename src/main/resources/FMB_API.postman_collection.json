@@ -153,6 +153,40 @@
 			"response": []
 		},
 		{
+			"name": "Raza Pending",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDIxOTg1NzMsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiI3ODJjNzQwMC1jMzM2LTRhYzAtODI2ZC1kN2JkYTZjNWJhMTkiLCJjbGllbnRfaWQiOiJmb29DbGllbnRJZCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.dHwpZ3zqKX1XiCnabywcSXkI_qXUuT83_fmYicYuuJ8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://10.0.0.121:8080/fmbApi/raza/pending",
+					"protocol": "http",
+					"host": [
+						"10",
+						"0",
+						"0",
+						"121"
+					],
+					"port": "8080",
+					"path": [
+						"fmbApi",
+						"raza",
+						"pending"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Approve Raza",
 			"request": {
 				"method": "PUT",

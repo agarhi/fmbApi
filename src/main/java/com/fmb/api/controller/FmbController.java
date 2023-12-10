@@ -20,6 +20,7 @@ import com.fmb.api.db.entity.Menu;
 import com.fmb.api.db.entity.RazaStatus;
 import com.fmb.api.db.entity.SpecialInstructions;
 import com.fmb.api.db.entity.User;
+import com.fmb.api.db.repo.UserRepository.PendingUserRaza;
 import com.fmb.api.error.handling.FmbException;
 import com.fmb.api.model.request.FeedbackRequest;
 import com.fmb.api.model.request.MenuRequest;
@@ -126,6 +127,11 @@ public class FmbController {
 	@GetMapping("/raza/status/{its}")
 	public ResponseEntity<RazaStatus> getRazaStatus(@PathVariable String its) throws FmbException {
 		return ResponseEntity.ok(razaStatusService.getRazaStatus(its));
+	}
+	
+	@GetMapping("/raza/pending")
+	public ResponseEntity<List<PendingUserRaza>> getPending() throws FmbException {
+		return ResponseEntity.ok(userService.getPendingRaza());
 	}
 	
 	@PutMapping("/raza/approve/{its}")

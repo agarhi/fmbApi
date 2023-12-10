@@ -1,5 +1,7 @@
 package com.fmb.api.service.impl;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -16,6 +18,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.fmb.api.db.entity.User;
 import com.fmb.api.db.repo.UserRepository;
+import com.fmb.api.db.repo.UserRepository.PendingUserRaza;
 import com.fmb.api.error.handling.FmbException;
 import com.fmb.api.model.request.SignUpRequest;
 import com.fmb.api.service.RazaStatusService;
@@ -82,5 +85,10 @@ public class UserServiceImpl implements UserService {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         return attr.getRequest().getSession(true); // true == allow create
     }
+
+	@Override
+	public List<PendingUserRaza> getPendingRaza() throws FmbException {
+		return userRepository.getPendingRaza();
+	}
 	
 }
