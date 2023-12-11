@@ -212,7 +212,3 @@ CREATE TABLE `feedback` (
   CONSTRAINT `user_fk` FOREIGN KEY (`user`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO `fmb_main`.`feedback` (`menu_item`, `quality`,`comment`,`user`) VALUES (48, 'Great', 'Badhiya',1);
-INSERT INTO `fmb_main`.`feedback` (`menu_item`, `quality`,`comment`,`user`) VALUES (48, 'Ok', 'Theek',2);
-INSERT INTO `fmb_main`.`feedback` (`menu_item`, `quality`,`comment`) VALUES (53, 'Extra Ordinary', 'Bau Bes');
-INSERT INTO `fmb_main`.`feedback` (`menu_item`, `quality`,`comment`,`user`) VALUES (53, 'Satisfactory', 'Maza nahi aaya',2);

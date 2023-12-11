@@ -20,6 +20,7 @@ public class RazaStatusServiceImpl implements RazaStatusService {
 	
 	@Autowired
 	private RazaStatusRepository razaStatusRepository;
+	
 	@Override
 	public RazaStatus getRazaStatus(String its) throws FmbException {
 		try {
