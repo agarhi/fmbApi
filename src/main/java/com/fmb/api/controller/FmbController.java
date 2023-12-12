@@ -1,6 +1,7 @@
 package com.fmb.api.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fmb.api.db.entity.FoodFeedback;
 import com.fmb.api.db.entity.Menu;
 import com.fmb.api.db.entity.RazaStatus;
 import com.fmb.api.db.entity.SpecialInstructions;
@@ -28,6 +28,8 @@ import com.fmb.api.model.request.RazaRejectRequest;
 import com.fmb.api.model.request.RsvpRequest;
 import com.fmb.api.model.request.SignUpRequest;
 import com.fmb.api.model.request.SpInstructionsRequest;
+import com.fmb.api.model.response.FoodFeedbackResponseKey;
+import com.fmb.api.model.response.FoodFeedbackResponseValue;
 import com.fmb.api.model.response.RsvpResponse;
 import com.fmb.api.model.response.SignUpResponse;
 import com.fmb.api.service.FoodFeedbackService;
@@ -160,7 +162,8 @@ public class FmbController {
 	}
 	
 	@GetMapping("/feedback")
-	public ResponseEntity<List<FoodFeedback>> getFeedback(@RequestParam Set<Integer> menuIds) throws FmbException {
+	@Secured("ROLE_ADMIN")
+	public ResponseEntity<Map<FoodFeedbackResponseKey, List<FoodFeedbackResponseValue>>> getFeedback(@RequestParam Set<Integer> menuIds) throws FmbException {
 		return ResponseEntity.ok(foodFeedbackService.getByMenuIds(menuIds));
 	}
 	
