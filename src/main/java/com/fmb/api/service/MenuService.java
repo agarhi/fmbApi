@@ -8,7 +8,7 @@ import com.fmb.api.error.handling.FmbException;
 
 public interface MenuService {
 	
-	public List<Menu> getByWeek(long offset) throws FmbException;
+	public List<Menu> getByOffset(long offset) throws FmbException;
 	
 	public List<Menu> getByDate(String date) throws FmbException;
 	

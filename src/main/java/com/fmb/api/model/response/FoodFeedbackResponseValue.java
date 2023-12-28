@@ -42,8 +42,8 @@ public class FoodFeedbackResponseValue {
 			feedbackResponse.setUsername(foodFeedback.getUser().getFname() + " "+foodFeedback.getUser().getLname());
 			feedbackResponse.setIts(foodFeedback.getUser().getIts());
 		} else {
-			feedbackResponse.setUsername("Anonymous User");
-			feedbackResponse.setIts("Not Applicable");
+			feedbackResponse.setUsername("Anonymous");
+			feedbackResponse.setIts("Anonymous");
 		}
 		return feedbackResponse;
 	}

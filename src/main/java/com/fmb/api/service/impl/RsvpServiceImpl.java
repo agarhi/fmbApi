@@ -57,7 +57,7 @@ public class RsvpServiceImpl implements RsvpService {
 		
 		int useridSession = ((User)session().getAttribute("CURRENT_USER")).getId();
 		
-		List<Menu> menuList =  menuService.getByWeek(offset);
+		List<Menu> menuList =  menuService.getByOffset(offset);
 		logger.info("menuList "+menuList.toString());
 		
 		Set<Integer> menuIds = new HashSet<>();
@@ -94,6 +94,8 @@ public class RsvpServiceImpl implements RsvpService {
 			}
 			menuRsvpDate.setDate(m.getDate());
 			menuRsvpDate.setMenuRsvp(menuRsvp);
+			logger.info("!m.getItem().equals(\"TBD\") "+(!m.getItem().equals("TBD")));
+			menuRsvpDate.setAllowedToRsvp(!m.getItem().equals("TBD"));
 			response.add(menuRsvpDate);
 		}
 		

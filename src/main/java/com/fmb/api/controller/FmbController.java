@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -65,6 +67,8 @@ public class FmbController {
 	@Autowired
 	private FoodFeedbackService foodFeedbackService;
 	
+	private static final Logger logger = LoggerFactory.getLogger(FmbController.class);
+	
 	@GetMapping("/test")
 	@Secured("ROLE_USER")
 	public ResponseEntity<String> hello() {
@@ -79,7 +83,7 @@ public class FmbController {
 	
 	@GetMapping("/menu")
 	public ResponseEntity<List<Menu>> getByWeek(@RequestBody MenuRequest menuRequest) throws FmbException {
-		return ResponseEntity.ok(menuService.getByWeek(menuRequest.getOffset()));
+		return ResponseEntity.ok(menuService.getByOffset(menuRequest.getOffset()));
 	}
 	
 	@PutMapping("/menu")
@@ -96,7 +100,9 @@ public class FmbController {
 	
 	@GetMapping("/rsvp/{menuOffset}")
 	public ResponseEntity<List<RsvpResponse>> getRsvp(@PathVariable Integer menuOffset) throws FmbException {
-		return ResponseEntity.ok(rsvpService.getByUserIdAndMenuOffset(menuOffset));
+		List<RsvpResponse> response = rsvpService.getByUserIdAndMenuOffset(menuOffset);
+		logger.info(response.toString());
+		return ResponseEntity.ok(response);
 	}
 	
 	@PutMapping("/rsvp")

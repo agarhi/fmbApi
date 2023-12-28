@@ -26,7 +26,7 @@ public class MenuServiceImpl implements MenuService {
 	private MenuRepository menuRepository;
 	
 	@Override
-	public List<Menu> getByWeek(long offset) throws FmbException {
+	public List<Menu> getByOffset(long offset) throws FmbException {
 		// offset 0 means current week
 		
 		long todayInMillis = new java.util.Date().getTime();
@@ -47,14 +47,6 @@ public class MenuServiceImpl implements MenuService {
 			long startDateInMillis = simpleDateFormat.parse(date).getTime();
 			menus = getByWeekRange(startDateInMillis);
 			
-			if(menus == null || menus.size() == 0) {
-				menus = new ArrayList<Menu>();
-				for(int i = 0; i < 7; i++) {
-					Date dateSql = new Date((i * 24 * 60 * 60 * 1000) + getStartOfWeek(startDateInMillis));
-					Menu menu = Menu.from(dateSql, "TBD", false);
-					menus.add(menu);
-				}
-			}
 			return menus;
 			
 		}catch (Exception e) {
@@ -76,7 +68,18 @@ public class MenuServiceImpl implements MenuService {
 		Date endDate = new Date(nextSundayInMillis);
 		logger.info("endDate "+endDate.toString());
 		
-		return menuRepository.getByWeek(startDate, endDate);
+		List<Menu> menus = menuRepository.getByWeek(startDate, endDate);
+		
+		if(menus == null || menus.size() == 0) {
+			menus = new ArrayList<Menu>();
+			for(int i = 0; i < 7; i++) {
+				Date dateSql = new Date((i * 24 * 60 * 60 * 1000) + getStartOfWeek(dateInMills));
+				Menu menu = Menu.from(dateSql, "TBD", false);
+				menus.add(menu);
+			}
+		}
+		
+		return menus;
 		
 	}
 	

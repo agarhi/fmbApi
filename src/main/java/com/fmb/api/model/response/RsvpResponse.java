@@ -8,6 +8,8 @@ public class RsvpResponse {
 	private Date date;
 	private boolean rsvp;
 	private MenuRsvp menuRsvp;
+	private boolean allowedToRsvp;
+	
 	public Date getDate() {
 		return date;
 	}
@@ -26,6 +28,19 @@ public class RsvpResponse {
 	public void setMenuRsvp(MenuRsvp menuRsvp) {
 		this.menuRsvp = menuRsvp;
 	}
+	public boolean isAllowedToRsvp() {
+		return allowedToRsvp;
+	}
+	public void setAllowedToRsvp(boolean allowedToRsvp) {
+		this.allowedToRsvp = allowedToRsvp;
+	}
+	
+	@Override
+	public String toString() {
+		return "RsvpResponse [date=" + date + ", rsvp=" + rsvp + ", menuRsvp=" + menuRsvp + ", allowedToRsvp="
+				+ allowedToRsvp + "]";
+	}
+	
 	
 	
 }
